@@ -1,0 +1,50 @@
+<!--Lesson 4 Exercises: HTML CSS Review, console.log-->
+<!DOCTYPE html>
+<hmtl>
+  <head>
+    <title>L4-IJ</title>
+    <style>
+      .h3 {
+        margin-top: 2px;
+        margin-bottom: 2px;
+      }
+      .p {
+        margin-top: 0px;
+        margin-bottom: 2px;
+      }
+
+      .add-to-cart {
+        background-color: yellow;
+      }
+      .buy-now {
+        background-color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>
+      Lesson 4: I-J
+    </h3>
+    <p>
+      i. Using HTML and CSS, try to copy the design.<br>
+      j. Afterwards, add onclick="..." attributes to the two buttons<br><br>
+      - When clicking 'Add to cart', create a popup with the text 'Added.'<br>
+      - When clicking 'Buy now', display the message 'Loading...' in the Console, and then create a popup with the text 'Purchased'.
+    </p>
+    <p>
+      Adults Plain Cotton T-shirt
+    </p>
+    <p>
+      Price $7.99
+    </p>
+    <button class="add-to-cart" onclick="alert('Added.')">
+      Add to cart
+    </button>
+    <button class="buy-now" onclick="
+      console.log('Loading...');
+      alert('Purchased.');
+    ">
+      Buy now
+    </button>
+  </body>
+</hmtl>
