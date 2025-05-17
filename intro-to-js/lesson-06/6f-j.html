@@ -1,0 +1,71 @@
+<!--Lesson 4 Exercises: HTML CSS Review, console.log-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>L6:F-J</title>
+    <style>
+      .h3 {
+        margin-top: 2px;
+        margin-bottom: 2px;
+      }
+      .p {
+        margin-top: 0px;
+        margin-bottom: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>
+      Lesson 6-F
+    </h3>
+    <p>
+      Generate a random number with Math.random(). Save it in a variable.
+    </p>
+    
+    <h3>
+      Lesson 6-G
+    </h3>
+    <p>
+      Create an if-statement and check:<br>
+      - If the number is less than 0.5, then display 'heads' in the console.<br>
+      - Else display 'tails' in the console.
+    </p>
+
+    <h3>
+      Lesson 6-H
+    </h3>
+    <p>
+      Instead of displaying 'heads' or 'tails' in the console, save the result in a variable called 'result'.
+    </p>
+    
+
+    <h3>
+      Lesson 6-I
+    </h3>
+    <p>
+      Let's say we're trying to guess the result. Create a variable called 'guess and save your guess ('heads' or 'tails').<br>
+      - If your guess matches the result, display 'You win!' in the console<br>
+      - If your guess does not match the result, display 'You lose!'
+    </p>
+
+    <h3>
+      Lesson 6-J
+    </h3>
+    <p>
+      (Challenge) Instead of using if-statements in the previous exercises, try switching them into tenary operatiors (condition ? A : B).
+    </p>
+  </body>
+  <script>
+    // Lesson 6-F
+    const randomNumber = Math.random();
+
+    // Lesson 6-G and 6-H
+    const result = randomNumber < 0.5 ? 'heads' : 'tails';
+    console.log(result);
+
+    // Lesson 6-I and 6-J
+    const guess = 'heads';
+    guessResult = guess === result ? 'You win!' : 'You lose!';
+    console.log(guessResult);
+  </script>
+</hmtl>

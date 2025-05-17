@@ -1,0 +1,54 @@
+<!--Lesson 6 Exercises: Booleans and If-Statements-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>L6-ABC</title>
+    <style>
+      .h3 {
+        margin-top: 2px;
+        margin-bottom: 2px;
+      }
+      .p {
+        margin-top: 0px;
+        margin-bottom: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>
+      Lesson 6-A
+    </h3>
+    <p>
+      Create a variable called 'hour' and save the current hour of the day (use 24-hour format and save it as a number between 0 and 23).<br>
+      - If hour is between 6 and 12, display 'Good morning!' in the console.<br>
+      - If the hour is between 13 and 17, display 'Good afternoon!' in the console.<br>
+      - Otherwise, display 'Good night!' in the console.
+    </p>
+
+    <h3>
+      Lesson 6-B
+    </h3>
+    <p>
+      Continuing from 6a, try changing the value in the 'hour' variable to make it display different messages.
+    </p>
+
+    <h3>
+      Lesson 6-C
+    </h3>
+    <p>
+      Continuing from 6a, create a variable called 'name' and save your name inside (as a string). Update the if-statement to display your name in each message. For example: 'Good morning ${name}!'
+    </p>
+  </body>
+  <script>
+    const hour = 15; // Change this value to test different messages
+    const name = 'Alexander';
+
+    if (hour >= 6 && hour < 13) {
+      console.log(`Good morning ${name}!`);
+    } else if (hour >= 13 && hour < 18) {
+      console.log(`Good afternoon ${name}!`);
+    } else {
+      console.log(`Good night ${name}!`);
+    }
+  </script>
+</hmtl>

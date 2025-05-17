@@ -1,0 +1,47 @@
+<!--Lesson 4 Exercises: HTML CSS Review, console.log-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>L6-DE</title>
+    <style>
+      .h3 {
+        margin-top: 2px;
+        margin-bottom: 2px;
+      }
+      .p {
+        margin-top: 0px;
+        margin-bottom: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>
+      Lesson 6-D
+    </h3>
+    <p>
+      Imagine an amusement park that has a discount for children (6 years and younger) or seniors (65 years and older).<br>
+      - Create a variable 'age' and savea person's age inside.
+      - Create an if-statement that checks if the person qualifies for a discount. If they do, display 'Discount' in the console. Otherwise, display 'No discount' in the console.
+      - Try changing the 'age' variable to display different messages.
+    </p>
+
+    <h3>
+      Lesson 6-E
+    </h3>
+    <p>
+      Continuing from exericse 6d, let's say the discount is only available if it is not a holiday. Create a variable: const isHoliday = true;<br>
+      - Update the code so that in order to get a discount, people must meet the age requirement and it is also not a holiday.<br>
+      - Try changing the value of isHoliday to display different messages.
+    </p>
+  </body>
+  <script>
+    const age = 5; // Change this value to test different messages
+    const isHoliday = false; // Change this value to test different messages
+
+    if ((age <=6 || age >= 65) && !isHoliday) {
+      console.log('Discount');
+    } else {
+      console.log('No discount');
+    }
+  </script>
+</hmtl>
