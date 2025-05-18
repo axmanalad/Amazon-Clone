@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DOM Projects</title>
+  </head>
+  <body>
+    <p>YouTube Subscribe Button</p>
+    <button onclick="
+      subscribe();
+    " class="js-subscribe-button">
+      Subscribe
+    </button>
+
+    <p>Amazon Shipping Calculator</p>
+    <input placeholder="Cost of order" class="js-cost-input" onkeydown="
+      handleCostKeydown(event);
+    ">
+    <button onclick="
+      calculateTotal();
+    ">Calculate</button>
+    <p class="js-total-cost"></p>
+
+    <input placeholder="Type something" class="js-input" onkeyup="
+      const inputElement = document.querySelector('.js-input');
+      const inputValue = inputElement.value;
+      const resultElement = document.querySelector('.js-input-result');
+      resultElement.innerHTML = `${inputValue}`;
+    ">
+    <p class="js-input-result"></p>
+
+    <script>
+      String(25)
+      // Type Coercion
+      console.log('25' - 5); // 20
+      console.log('25' + 5); // 255
+
+      // Window Object (represents the browser window)
+      // Note: window is automatically added as a global object
+      window.document
+      window.console.log('window');
+
+      function handleCostKeydown(event) {
+        if (event.key === 'Enter') {
+          calculateTotal();
+        }
+      }
+
+      function calculateTotal() {
+        const inputElement = document.querySelector('.js-cost-input');
+        let cost = Number(inputElement.value);
+
+        if (cost < 40) {
+          // If cost is a float, multiply by 100 temporarily to avoid floating point issues
+          if (cost % 1 !== 0) {
+            cost = ((cost * 100) + 1000) / 100;
+          } else {
+            cost = cost + 10;
+          }
+        }
+
+        document.querySelector('.js-total-cost').innerHTML = `$${cost}`;
+      }
+
+
+      function subscribe() {
+        const buttonElement = document.querySelector('.js-subscribe-button')
+
+        if (buttonElement.innerText === 'Subscribe') {
+          buttonElement.innerHTML = 'Subscribed';
+        } else {
+          buttonElement.innerHTML = 'Subscribe';
+        }
+      }
+    </script>
+  </body>
+</html>

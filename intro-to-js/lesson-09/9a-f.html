@@ -1,0 +1,99 @@
+<!--Lesson 9 Exercises: DOM-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>L9:A-F</title>
+    <style>
+      .h3 {
+        margin-top: 2px;
+        margin-bottom: 2px;
+      }
+      .p {
+        margin-top: 0px;
+        margin-bottom: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>
+      Lesson 9-A
+    </h3>
+    <p>
+      Create a 9a button. Use document.querySelector('button') to get the button from the page, and then display it in the console.
+    </p>
+
+    <h3>
+      Lesson 9-B
+    </h3>
+    <p>
+      Continuing from 9a, create another button 9b below. Using JavaScript, change the text in the second button to '9b done!'
+    </p>
+
+    <button>9a</button>
+    <button class="js-9b-button">9b</button>
+
+    <h3>
+      Lesson 9-C
+    </h3>
+    <p>
+      Create 2 buttons 'heads' and tails', and a paragraph underneath. When clicking the 'heads' button, display 'You chose: heads' in the paragraph. When the 'tails' button, display 'You chose: tails'.
+    </p>
+    <button onclick="
+      document.querySelector('.js-coin-result').innerHTML = 'You chose: heads';
+    ">heads</button>
+    <button onclick="
+      document.querySelector('.js-coin-result').innerHTML = 'You chose: tails';
+    ">tails</button>
+    <p class="js-coin-result"></p>
+
+    <h3>
+      Lesson 9-D
+    </h3>
+    <p>
+      Create a text box (input) and a submit button. When clicking 'Submit', display 'Your name is: ${text}' on the page (${text} = the text inside the text box)
+    </p>
+
+    <h3>
+      Lesson 9-E
+    </h3>
+    <p>
+      Modify exercise 9d so that when you press 'Enter' in the input, it will also display the same message on the page.
+    </p>
+
+    <h3>
+      Lesson 9-F
+    </h3>
+    <p>
+      Continuing from 9e, create a function to reuse the code.
+    </p>
+
+    <input class="js-name-input" placeholder="Name" onkeydown="
+      handleNameKeydown(event);">
+    <button onclick="displayName();">Submit</button>
+    <p class="js-name-result"></p>
+  </body>
+  <script>
+    // 9a
+    const button = document.querySelector('button');
+    console.log(button);
+
+    // 9b
+    const button2 = document.querySelector('.js-9b-button');
+    button2.innerHTML = '9b done!';
+
+    function displayName() {
+      const inputElement = document.querySelector('.js-name-input');
+      const name = inputElement.value;
+      const resultElement = document.querySelector('.js-name-result');
+      resultElement.innerHTML = `Your name is: ${name}`;
+    }
+
+    function handleNameKeydown(event) {
+      if (event.key === 'Enter') {
+        displayName();
+      }
+    }
+
+
+  </script>
+</hmtl>
