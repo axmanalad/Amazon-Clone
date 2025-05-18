@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Objects</title>
+  </head>
+  <body>
+    <script>
+      const product = {
+        name: 'socks',
+        price: 1090
+      };
+      console.log(product);
+      console.log(typeof(product)); // object
+      console.log(product.name);
+      console.log(product.price);
+
+      product.name = 'cotton socks';
+      console.log(product.name);
+
+      product.newProperty = true; // Adding a new property
+      console.log(product);
+
+      delete product.newProperty; // Deleting a property
+      console.log(product);
+
+      const product2 = {
+        name: 'shirt',
+        ['delivery-time']: '1 day',
+        rating: {
+          stars: 4.5,
+          count: 87
+        },
+        fun: function function1() {
+          console.log('function inside object');
+        }
+      };
+      console.log(product2);
+      console.log(product2.name);
+      console.log(product2['name']); // Accessing property using bracket notation
+      console.log(product['delivery-time']); // Accessing property with hyphen using bracket notation
+
+      console.log(product2.rating.count); // Accessing nested property
+      product2.fun(); // Calling a method inside an object
+
+      console.log(typeof console.log); // function
+
+      const jsonString = JSON.stringify(product2) // Convert object to JSON string
+      console.log(jsonString);
+      console.log(JSON.parse(jsonString)); // Convert JSON string back to object
+
+      localStorage.setItem('message', 'Hello World'); // Store data in local storage
+      console.log(localStorage.getItem('message')); // Retrieve data from local storage
+      localStorage.removeItem('message'); // Remove data from local storage
+
+      // Auto-boxing
+      console.log('hello'.length); // String length
+      console.log('hello'.toUpperCase()); // Convert string to uppercase
+
+      const object1 = {
+        message: 'hello'
+      };
+      
+      const object2 = object1; // Reference to the same object (copy by reference)
+      
+      object1.message = 'Good job!'; // Modify the object
+      console.log(object1.message); // Output: Good job!
+      console.log(object2.message); // Output: Good job! (same reference)
+
+      const object3 = {
+        message: 'Good job!'
+      };
+      console.log(object3 === object1); // false (different references)
+      console.log(object2 === object1); // true (same reference)
+
+      const object4 = {
+        message: 'Great job!',
+        price: 799
+      };
+      //const message = object4.message;
+      const { message, price } = object4; // Destructuring assignment
+      console.log(message); // Output: Great job!
+      console.log(price); // Output: 799
+
+      const object5 = {
+        //message: message
+        message, // Shorthand property name
+        // method: function function1() {
+        //   console.log('method');
+        // }
+        method() {
+          console.log('method');
+        } // Method shorthand syntax
+      };
+      console.log(object5); // Output: { message: 'Great job!' }
+      object5.method(); // Output: method
+    </script>
+  </body>
+</html>

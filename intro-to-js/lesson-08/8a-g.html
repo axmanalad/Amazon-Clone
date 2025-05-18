@@ -1,0 +1,124 @@
+<!--Lesson 4 Exercises: HTML CSS Review, console.log-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>L8:A-G</title>
+    <style>
+      .h3 {
+        margin-top: 2px;
+        margin-bottom: 2px;
+      }
+      .p {
+        margin-top: 0px;
+        margin-bottom: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>
+      Lesson 8-A
+    </h3>
+    <p>
+      Let's say in the Amazon project, we have a basketball product. This product has a name of 'basketball', a price of 2095 cents. Create an object to represent this product and display it in the console.
+    </p>
+
+    <h3>
+      Lesson 8-B
+    </h3>
+    <p>
+      Continuing from 8a, let's say we want to increase the price by 500 cents. Use dot notation to increase the price, and display the updated object in the console.
+    </p>
+
+    <h3>
+      Lesson 8-C
+    </h3>
+    <p>
+      Using bracket notation, add a property 'delivery-time' to the object with the value '3 days'. Display the updated object in the console.
+    </p>
+
+    <h3>
+      Lesson 8-D
+    </h3>
+    <p>
+      Create a function 'comparePrice(product1, product2)', which takes 2 products (with 'name' and 'price' properties) and returns the product that is less expensive. Create 2 products and try out the function.
+    </p>
+
+    <h3>
+      Lesson 8-E
+    </h3>
+    <p>
+      Create a function 'isSameProduct(product1, product2)' that takes 2 products and returns true if 2 products have the same values inside ('name' and 'price'). If not, return false. Create 2 products and try out the function.
+    </p>
+
+    <h3>
+      Lesson 8-F
+    </h3>
+    <p>
+      Using Google or an A.I. tool, search how to convert a string to all lowercase with JavaScript ('Good Morning' => 'good morning')
+    </p>
+
+    <h3>
+      Lesson 8-G
+    </h3>
+    <p>
+      Search how to repeat a string many times ('test' 2 times => 'testtest')
+    </p>
+    <script>
+      // 8a
+      const product = {
+        name: 'basketball',
+        price: 2095
+      }
+      console.log(product);
+
+      // 8b
+      product.price += 500;
+      console.log(product);
+
+      // 8c
+      product['delivery-time'] = '3 days';
+      console.log(product);
+
+      // 8d
+      function comparePrice(product1, product2) {
+        if (product1.price < product2.price) {
+          return product1;
+        } else {
+          return product2;
+        }
+      }
+
+      const product1 = {
+        name: 'shirt',
+        price: 799
+      }
+      const product2 = {
+        name: 'pants',
+        price: 1299
+      }
+      console.log(comparePrice(product1, product2));
+
+      // 8e
+      function isSameProduct(product1, product2) {
+        return product1.name === product2.name && product1.price === product2.price;
+      }
+      const product3 = {
+        name: 'shirt',
+        price: 799
+      }
+      console.log(isSameProduct(product1, product3)); // true
+      console.log(isSameProduct(product1, product2)); // false
+
+      // 8f
+      const str = 'Good Morning';
+      const lowerStr = str.toLowerCase();
+      console.log(lowerStr); // 'good morning'
+
+      // 8g
+      const repeatStr = 'test';
+      const repeatCount = 2;
+      const repeatedStr = repeatStr.repeat(repeatCount);
+      console.log(repeatedStr); // 'testtest'
+    </script>
+  </body>
+</hmtl>

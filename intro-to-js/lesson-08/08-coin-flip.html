@@ -1,0 +1,33 @@
+<!--Lesson 4 Exercises: HTML CSS Review, console.log-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Coin-Flip</title>
+  </head>
+  <body>
+    <button onclick="playGame('heads');">heads</button>
+    <button onclick="playGame('tails')">tails</button>
+    <button onclick="
+      localStorage.removeItem('score');
+    ">Reset Score</button>
+  </body>
+  <script>
+    function playGame(guess) {
+      const score = JSON.parse(localStorage.getItem('score')) || {
+        wins: 0,
+        losses: 0
+      };
+      const randomNumber = Math.random();
+      const result = randomNumber < 0.5 ? 'heads' : 'tails';
+      const guessResult = guess === result ? 'You win!' : 'You lose!';
+      console.log(`You guessed ${guess}. Computer flips and lands ${result}! ${guessResult}`);
+      if (guess === result) {
+        score.wins++;
+      } else {
+        score.losses++;
+      }
+      console.log(`Wins: ${score.wins}, Losses: ${score.losses}`);
+      localStorage.setItem('score', JSON.stringify(score));
+    }
+  </script>
+</hmtl>
