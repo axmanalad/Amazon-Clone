@@ -1,0 +1,170 @@
+<!--Lesson 4 Exercises: HTML CSS Review, console.log-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>L7:A-I</title>
+    <style>
+      .h3 {
+        margin-top: 2px;
+        margin-bottom: 2px;
+      }
+      .p {
+        margin-top: 0px;
+        margin-bottom: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>
+      Lesson 7-A
+    </h3>
+    <p>
+      Create a function called 'greet' that displays teh message 'Hello!' in the console. Call/Run this function a few times using: greet();
+    </p>
+
+    <h3>
+      Lesson 7-B
+    </h3>
+    <p>
+      Continuing from 7a, add a parameter called 'name' to the 'greet' function and display the message: 'Hello ${name}!' Call the function a few times with different names.
+    </p>
+
+    <h3>
+      Lesson 7-C
+    </h3>
+    <p>
+      Try calling greet() without a name (it will display 'Hello undefined!'). Modify the function so that if 'name' is undefined, it will display 'Hi there!' instead.     
+    </p>
+
+    <h3>
+      Lesson 7-D
+    </h3>
+    <p>
+      Create a function 'convertToFahrenheit(celsius)' that takes a number in degrees Celsius and returns a number in degrees Fahrenheit.<br>
+      - convertToFahrenheit(25) => 77    
+    </p>
+
+    <h3>
+      Lesson 7-E
+    </h3>
+    <p>
+      Create a function 'convertToCelsisus(fahrenheit)' that takes a number in degrees Fahrenheit and returns a number in degrees Celsius.<br>
+      - convertToCelsisus(86) => 30    
+    </p>
+
+    <h3>
+      Lesson 7-F
+    </h3>
+    <p>
+      Create a function 'convertTemperature(degrees, unit)' that takes a number and a unit ('C' or 'F'), and converts it into the other unit.<br>
+      - convertTemperature(25, 'C') => '77F'<br>
+      - convertTemperature(86, 'F') => '30C'
+    </p>
+
+    <h3>
+      Lesson 7-G
+    </h3>
+    <p>
+      Create a function convertLength(length, from, to) that takes a number and a uniot ('km' or 'miles') and converts the length to another unit ('km' or 'miles').<br>
+      - convertLength(50, 'miles', 'km') => '80 km'<br>
+      - convertLength(32, 'km', 'miles') => '20 miles'<br>
+      - convertLength(50, 'km', 'km') => '50 km'<br>
+    </p>
+
+    <h3>
+      Lesson 7-H
+    </h3>
+    <p>
+      Update convertLength to support converting between km, miles, and also feet.
+      - convertLength(5, 'miles', 'km') => '8 km'<br>
+      - convertLength(5, 'miles', 'ft') => '26400 ft'<br>
+      - convertLength(5, 'km', 'ft') => '16405 ft'<br>
+    </p>
+
+    <h3>
+      Lesson 7-I
+    </h3>
+    <p>
+      Update convertLength so that if you give it an invalid unit, it will return `Invalid unit: ${unit}`.<br>
+      - convertLength(5, 'lbs', 'lbs') => 'Invalid unit: lbs'    
+    </p>
+    <script>
+      // Lesson 7-A, 7-B, 7-C
+      function greet(name) {
+        if (name === undefined) {
+          console.log('Hi there!');
+        } else {
+          console.log(`Hello ${name}!`);
+        }
+      }
+      greet();
+      greet('Alexander');
+      greet('Ben');
+      greet('Cassidy');
+
+      // Lesson 7-D
+      function convertToFahrenheit(celsius) {
+        return (celsius * 9/5) + 32;
+      }
+      console.log(convertToFahrenheit(25)); // 77
+      
+      // Lesson 7-E
+      function convertToCelsius(fahrenheit) {
+        return (fahrenheit - 32) * 5/9;
+      }
+      console.log(convertToCelsius(86)); // 30
+
+      // Lesson 7-F
+      function convertTemperature(degrees, unit) {
+        if (unit === 'C') {
+          return `${convertToFahrenheit(degrees)}F`;
+        } else if (unit === 'F') {
+          return `${convertToCelsius(degrees)}C`;
+        } else {
+          return 'Invalid unit';
+        }
+      }
+      console.log(convertTemperature(25, 'C')); // 77F
+      console.log(convertTemperature(86, 'F')); // 30C
+
+
+      // Lesson 7-G, 7-H, 7-I
+      function convertLength(length, from, to) {
+        const conversionRates = {
+          miles: {
+            km: 1.6,
+            ft: 5280,
+            miles: 1
+          },
+          km: {
+            km: 1,
+            ft: 3281,
+            miles: 0.6
+          },
+          ft: {
+            km: 0.000189394,
+            miles: 0.000189394,
+            ft: 1
+          }
+        }
+        if (!conversionRates[from] || !conversionRates[to]) {
+          return `Invalid unit: ${from}`;
+        }
+
+        const convertedLength = length * conversionRates[from][to];
+        return `${Math.ceil(convertedLength)} ${to}`;
+      }
+      // Test cases
+      // Lesson 7-G
+      console.log(convertLength(50, 'miles', 'km')); // 80 km
+      console.log(convertLength(32, 'km', 'miles')); // 20 miles
+      console.log(convertLength(50, 'km', 'km')); // 50 km
+      // Lesson 7-H
+      console.log(convertLength(5, 'miles', 'km')); // 8 km
+      console.log(convertLength(5, 'miles', 'ft')); // 26400 ft
+      console.log(convertLength(5, 'km', 'ft')); // 16405 ft
+      // Lesson 7-I
+      console.log(convertLength(5, 'lbs', 'lbs')); // Invalid unit: lbs
+    </script>
+  </body>
+</hmtl>
