@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculator</title>
+    <link rel="stylesheet" href="styles/10-calculator.css">
+  </head>
+  <body>
+    <p class="js-calculation calculation"></p>
+    <div>
+      <button onclick="updateCalculation('1');">1</button>
+      <button onclick="updateCalculation('2');">2</button>
+      <button onclick="updateCalculation('3');">3</button>
+      <button onclick="updateCalculation(' + ');" class="op-button">+</button>
+    </div>
+    <div>
+      <button onclick="updateCalculation('4');">4</button>
+      <button onclick="updateCalculation('5');">5</button>
+      <button onclick="updateCalculation('6');">6</button>
+      <button onclick="updateCalculation(' - ');" class="op-button">-</button>
+    </div>
+    <div>
+      <button onclick="updateCalculation('7');">7</button>
+      <button onclick="updateCalculation('8');">8</button>
+      <button onclick="updateCalculation('9');">9</button>
+      <button onclick="updateCalculation(' * ');" class="op-button">*</button>
+    </div>
+    <div>
+      <button onclick="updateCalculation('0');">0</button>
+      <button onclick="updateCalculation('.');">.</button>
+      <button onclick="calculate();">=</button>
+      <button onclick="updateCalculation(' / ');" class="op-button">/</button>
+    </div>
+    <button onclick="clearCalculation();" class="clear-button">Clear</button>
+    <script src="scripts/10-calculator.js"></script>
+  </body>
+</html>

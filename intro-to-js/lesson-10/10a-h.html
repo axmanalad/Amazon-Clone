@@ -1,0 +1,77 @@
+<!--Lesson 10 Exercises: HTML, CSS, and JavaScript Together-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>L10:A-H</title>
+    <link rel="stylesheet" href="styles/10-buttons.css">
+  </head>
+  <body>
+    <h3>
+      Lesson 10-A&B
+    </h3>
+    <p>
+      Create the following buttons using HTML and CSS.<br>
+      a. Add to Cart (Amazon)<br>
+      b. Uber buttons (Request now and Schedule for later)
+    </p>
+    <div style="margin-bottom: 10px;">
+      <button class="amazon-button">Add to Cart</button>
+    </div>
+    <button class="uber-request-button">Request now</button>
+    <button class="uber-schedule-button">Schedule for later</button>
+
+    <h3>
+      Lesson 10-C
+    </h3>
+    <p>
+      classList has another method, classList.contains('class-name'), which checks if an element has a class.<br>
+      - Create a button: "button class="js-button""<br>
+      - Use document.querySelector() and classList.contains('js-button') to check if this button has the class 'js-button'.<br>
+      - console.log() the result.
+    </p>
+    <button class="js-button">Check Class</button>
+    <h3>
+      Lesson 10-D
+    </h3>
+    <p>
+      Create the Gaming button. When clicking this button, it should turn ON / OFF<br>
+      - When clicking the button, add or remove the class 'is-toggled', and use it to change the styling.<br>
+      - Use if (classList.contains('is-toggled')) to decide whether to add or remove the 'is-toggled' class.
+    </p>
+
+    <h3>
+      Lesson 10-E
+    </h3>
+    <p>
+      Continuing from 10d, create 2 more buttons that can be turned ON / OFF.
+    </p>
+
+    <h3>
+      Lesson 10-F
+    </h3>
+    <p>
+      Continuing from 10e, use a function to reuse the code, and separate each language into its own file.
+    </p>
+
+    <h3>
+      Lesson 10-G (Challenge)
+    </h3>
+    <p>
+      Modify 10f so that only 1 button can be ON at a time.
+    </p>
+
+    <button onclick="toggleButton(event);" class="switch-button">Gaming</button>
+    <button onclick="toggleButton(event);" class="switch-button">Music</button>
+    <button onclick="toggleButton(event);" class="switch-button">Tech</button>
+
+    <script src="scripts/10-buttons.js"></script>
+
+    <h3>
+      Lesson 10-H (Challenge)
+    </h3>
+    <p>
+      Copy the Amazon Shipping Calculator from 10-dom-projects.html. If we type a number less than 0, display a red error message below the text box.
+    </p>
+
+  </body>
+</hmtl>
