@@ -1,0 +1,224 @@
+<!--Lesson 12 Exercises: Advanced Functions-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>L12: Part 1</title>
+    <style>
+      .h3 {
+        margin-top: 2px;
+        margin-bottom: 2px;
+      }
+      .p {
+        margin-top: 0px;
+        margin-bottom: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>
+      Lesson 12-A
+    </h3>
+    <p>
+      Create a variable called 'add' and save a function inside. This function will console.log(2+3); Run the function twice.
+    </p>
+    <script>
+      const add = function() {
+        console.log(2 + 3);
+      };
+      add();
+      add();
+    </script>
+
+    <h3>
+      Lesson 12-B
+    </h3>
+    <p>
+      Continuing from exercise 12a, create a function runTwice(fun) that takes a function (as a parameter) and runs it twice.<br>
+      - runTwice(function() { console.log('12b');}); => console.log('12b') twice<br>
+      - runTwice(add); => console.log(5) twice
+    </p>
+    <script>
+      function runTwice(fun) {
+        fun();
+        fun();
+      }
+      runTwice(function() { console.log('12b'); });
+      runTwice(add);
+    </script>
+
+    <h3>
+      Lesson 12-C
+    </h3>
+    <p>
+      Create the button. When clicking the button, after 1 second, the text inside the button changes to 'Finished!'.<br>
+      (Hint: use setTimeout() and the DOM)
+    </p>
+    <button class="js-12c-button" onclick="finish();">Start</button>
+    <script>
+      function finish() {
+        setTimeout(function() {
+          const button = document.querySelector('.js-12c-button');
+          button.innerHTML = 'Finished!';
+        }, 1000);
+      }
+    </script>
+
+    <h3>
+      Lesson 12-D
+    </h3>
+    <p>
+      Continuing from exercise 12c, modify the button so that when we click it, the text immediately changes to 'Loading...', and then after 1 second, it changes to 'Finished!'.
+    </p>
+    <button class="js-12d-button" onclick="load();">Start</button>
+    <script>
+      function load() {
+        const button = document.querySelector('.js-12d-button');
+        button.innerHTML = 'Loading...';
+        setTimeout(function() {
+          button.innerHTML = 'Finished!';
+        }, 1000);
+      }
+    </script>
+
+    <h3>
+      Lesson 12-E
+    </h3>
+    <p>
+      Create the 'Add to cart' button. When clicking this button, display the message 'Added' below the button. Then, after 2 seconds, remove the message.
+    </p>
+    <button class="js-12e-button" onclick="addToCart();">Add to cart</button>
+    <p class="js-12e-message"></p>
+    <script>
+      function addToCart() {
+        const message = document.querySelector('.js-12e-message');
+        message.innerHTML = 'Added';
+        setTimeout(function() {
+          message.innerHTML = '';
+        }, 2000);
+      }
+    </script>
+
+    <h3>
+      Lesson 12-F (Challenge)
+    </h3>
+    <p>
+      Continuing from exercise 12e, if we click the button, wait 1 to 1.5 seconds, and then click the button again, notice that the second time, the message disappears very quickly (because the first setTimeout is still running and will make the message disappear very soon).<br>
+      - Modify the code so when we click the button, it "refreshes" the 2 second wait time (waits for 2 seconds again and removes message).<br>
+      - Hint: you can cancel the previous setTimeout using clearTimeout()
+    </p>
+    <button class="js-12f-button" onclick="addToCartF();">Add to cart</button>
+    <p class="js-12f-message"></p>
+    <script>
+      let timeoutId;
+      function addToCartF() {
+        const message = document.querySelector('.js-12f-message');
+        message.innerHTML = 'Added';
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(function() {
+          message.innerHTML = '';
+        }, 2000);
+      }
+    </script>
+
+    <h3>
+      Lesson 12-G (Challenge)
+    </h3>
+    <p>
+      Imagine we're creating a message app. Use setInterval() and document.title to create the feature, where the title changes every 1 second between "App" and "(2) New messages".
+    </p>
+
+    <!-- <script>
+      let showNewMessages = false;
+      setInterval(function() {
+        if (showNewMessages) {
+          document.title = 'App';
+        } else {
+          document.title = '(2) New messages';
+        }
+        showNewMessages = !showNewMessages;
+      }, 1000);
+    </script> -->
+
+    <h3>
+      Lesson 12-H (Challenge)
+    </h3>
+    <p>
+      Continuing from 12g, instead of displaying "(2) New messages" every time, save the number of messages in a variable: let messages = 2;<br>
+      - Use the number in the variable to determine what title to display.<br>
+      - Create 2 buttons 'Add' / 'Remove' that increase / decrease the 'messages' variable by 1.
+    </p>
+    <!-- <button class="js-12h-add-button" onclick="addMessage();">Add</button>
+    <button class="js-12h-remove-button" onclick="removeMessage();">Remove</button> -->
+    <!-- <script>
+      let showNewMessages = false;
+      let messages = 2;
+      setInterval(function() {
+        if (showNewMessages) {
+          document.title = 'App';
+        } else {
+          document.title = `(${messages}) New messages`;
+        }
+        showNewMessages = !showNewMessages;
+      }, 1000);
+
+      function addMessage() {
+        messages++;
+      }
+
+      function removeMessage() {
+        if (messages > 0) {
+          messages--;
+        }
+      }
+    </script> -->
+
+    <h3>
+      Lesson 12-I (Challenge)
+    </h3>
+    <p>
+      Continuing from 12h:<br>
+      - Don't let 'messages' go below 0.<br>
+      - If messages === 0, stop changing the title and display 'App' as the title.<br>
+      - When messages > 0, start changing the title again.
+    </p>
+    <button class="js-12i-add-button" onclick="addMessageI();">Add</button>
+    <button class="js-12i-remove-button" onclick="removeMessageI();">Remove</button>
+    <script>
+      let showNewMessages = false;
+      let messages = 2;
+      let intervalId;
+
+      function startInterval() {
+        intervalId = setInterval(function() {
+          if (messages === 0) {
+            document.title = 'App';
+            clearInterval(intervalId);
+            intervalId = null;
+          } else {
+            if (showNewMessages) {
+              document.title = 'App';
+            } else {
+              document.title = `(${messages}) New messages`;
+            }
+            showNewMessages = !showNewMessages;
+          }
+        }, 1000);
+      }
+
+      startInterval();
+
+      function addMessageI() {
+        messages++;
+        if (!intervalId) {
+          startInterval();
+        }
+      }
+
+      function removeMessageI() {
+        if (messages > 0) {
+          messages--;
+        }
+      }
+    </script>
+  </body>
+</hmtl>
