@@ -7,7 +7,30 @@
     </style>
   </head>
   <body>
+    <button onclick="" class="js-button">Click</button>
+
     <script>
+      const buttonElement = document.querySelector('.js-button');
+
+      // Same as <button onclick="function();">Click</button>
+      const eventListener = () => {
+        console.log('click');
+      };
+      /* Advantages:
+        - Multiple event listeners for an event
+        - We can remove an event listener
+      
+      */
+      buttonElement.addEventListener('click', eventListener);
+
+      buttonElement.removeEventListener('click', eventListener);
+
+      buttonElement.addEventListener('click', function() {
+        console.log('click2');
+      });
+
+
+
       function greeting() {
         console.log('hello');
       }
@@ -60,7 +83,7 @@
         'make dinner',
         'wash dishes',
         'watch youtube'
-      ].forEach(function(value, index) {
+      ].forEach((value, index) => {
         if (value === 'wash dishes') {
           return;
         }
@@ -69,6 +92,53 @@
         console.log(index);
         console.log(value);
       });
+
+      // Arrow functions (mostly the same as function expressions)
+      const regularFunction = function(param, param2) {
+        console.log('hello');
+        return 5;
+      };
+
+      const arrowFunction = (param, param2) => {
+        console.log('hello');
+        return 5;
+      };
+      arrowFunction();
+
+      const oneParam = param => {
+        console.log(param + 1);
+      };
+      oneParam(2); // 2 + 1 = 3
+
+      const oneLine = () => 2 + 3;
+      console.log(oneLine()); // 5
+
+      // Arrow functions with objects
+      const object2 = {
+        method: () => {
+
+        },
+        method() {
+        
+        } // Shorthand method definition
+      };
+
+      // Arrow functions with array methods
+      console.log([1, -3, 5].filter((value, index) => {
+        // if (value < 0) {
+        //   return false; // Exclude negative numbers
+        // }
+        // return true; // Include positive numbers
+        return value >= 0;
+      })); // Returns an array that excludes negative numbers
+
+      console.log([1, 1, 3].map((value, index) => {
+        return value * 2; // Returns an array with each value multiplied by 2
+      }));
+
+      console.log([1, 1, 3].map(value => value * 2 
+      // Returns an array with each value multiplied by 2
+    )); // Same as previous map example (simplified syntax)
     </script>
   </body>
 </html>

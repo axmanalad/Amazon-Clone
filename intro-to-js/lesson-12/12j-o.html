@@ -1,0 +1,102 @@
+<!--Lesson 4 Exercises: HTML CSS Review, console.log-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>L12: Part 2</title>
+    <style>
+      .h3 {
+        margin-top: 2px;
+        margin-bottom: 2px;
+      }
+      .p {
+        margin-top: 0px;
+        margin-bottom: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>
+      Lesson 12-J
+    </h3>
+    <p>
+      Create an arrow function called 'multiply' that takes 2 numbers, multiplies them together, and returns the result.
+    </p>
+
+    <h3>
+      Lesson 12-K
+    </h3>
+    <p>
+      Continuing from exercise 12j, write the arrow function on one line.
+    </p>
+    <script>
+      const multiply = (a, b) => a * b;
+
+      console.log(multiply(2, 3)); // Should log 6
+      console.log(multiply(7, 10)); // Should log 70
+    </script>
+
+    <h3>
+      Lesson 12-L
+    </h3>
+    <p>
+      Create a function countPositve(nums) that takes an array of numbers and returns how many numbers in the array are greater than 0. Create this function using .forEach() instead of a loop.
+    </p>
+    <script>
+      function countPositive(nums) {
+        let count = 0;
+        nums.forEach(num => {
+          if (num > 0) {
+            count++;
+          }
+        });
+        return count;
+      }
+
+      console.log(countPositive([1, -3, 5])); // Should log 2
+      console.log(countPositive([-2, 3, -5, 7, 10])); // Should log 3
+    </script>
+
+    <h3>
+      Lesson 12-M
+    </h3>
+    <p>
+      Create a function addNum(array, num) that takes an array of numbers and returns an array where each number is increased by 'num'. Create this function using .map() instead of a loop. (Bonus: try to use one-line shortcuit syntax)
+    </p>
+    <script>
+      function addNum(array, num) {
+        return array.map(value => value + num);
+      }
+
+      console.log(addNum([1, 2, 3], 2)); // Should log [3, 4, 5]
+      console.log(addNum([10, 20, 30], 2)); // Should log [0, 1, 2, 101]
+    </script>
+
+    <h3>
+      Lesson 12-N
+    </h3>
+    <p>
+      Create a function removeEgg(foods) that tkaes an array of strings and returns an array where the string 'egg' is removed. Create this function using .filter() instead of a loop.
+    </p>
+
+    <h3>
+      Lesson 12-O
+    </h3>
+    <p>
+      Update exercise 12n to only remove the first 2 eggs from the array.
+    </p>
+    <script>
+      function removeEgg(foods) {
+        let eggCount = 0;
+        return foods.filter(food => {
+          if (food === 'egg' && eggCount < 2) {
+            eggCount++;
+            return false; // Exclude this 'egg'
+          }
+          return true; // Include all other foods
+        });
+      }
+
+      console.log(removeEgg(['egg', 'apple', 'egg', 'egg', 'ham'])); // Should log ['apple', 'ham']
+    </script>
+  </body>
+</hmtl>

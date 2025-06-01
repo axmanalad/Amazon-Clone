@@ -48,3 +48,19 @@ body {
   padding: 8px 15px;
   cursor: pointer;
 }
+
+.confirm-reset-button {
+  background-color: white;
+  border: none;
+  font-size: 15px;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+.cancel-reset-button {
+  background-color: white;
+  border: none;
+  font-size: 15px;
+  padding: 8px 15px;
+  cursor: pointer;
+}

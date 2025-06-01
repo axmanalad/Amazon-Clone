@@ -10,20 +10,88 @@ updateScoreElement();
 let isAutoPlaying = false;
 let intervalId;
 
+document.querySelector('.js-reset-score-button')
+  .addEventListener('click', () => {
+    resetConfirm();
+  });
+
+function resetConfirm() {
+  document.querySelector('.js-reset-confirm').innerHTML =
+    `Are you sure you want to reset the score?
+    <button class="js-confirm-reset-button confirm-reset-button">Yes</button>
+    <button class="js-cancel-reset-button cancel-reset-button">No</button>`;
+
+  document.querySelector('.js-confirm-reset-button')
+    .addEventListener('click', () => {
+      resetScore();
+      document.querySelector('.js-reset-confirm').innerHTML = '';
+    });
+
+  document.querySelector('.js-cancel-reset-button')
+    .addEventListener('click', () => {
+      document.querySelector('.js-reset-confirm').innerHTML = '';
+    });
+}
+
+document.querySelector('.js-auto-play-button')
+  .addEventListener('click', () => {
+    autoPlay();
+  });
+
 function autoPlay() {
+  const autoPlayButton = document.querySelector('.js-auto-play-button');
   if (!isAutoPlaying) {
-    intervalId = setInterval(function() {
+    intervalId = setInterval(() => {
       const playerMove = pickComputerMove();
       playGame(playerMove);
     }, 1000);
+    autoPlayButton.innerHTML = 'Stop Playing';
     isAutoPlaying = true;
   }
   else {
     clearInterval(intervalId);
+    autoPlayButton.innerHTML = 'Auto Play';
     isAutoPlaying = false;
   }
 }
+
+function resetScore() {
+  score = {
+    wins: 0,
+    losses: 0,
+    ties: 0
+  };
+  localStorage.setItem('score', JSON.stringify(score));
+  updateScoreElement();
+}
+
+document.querySelector('.js-rock-button')
+  .addEventListener('click', () => {
+    playGame('rock');
+  });
   
+document.querySelector('.js-paper-button')
+  .addEventListener('click', () => {
+    playGame('paper');
+  }); 
+
+document.querySelector('.js-scissors-button')
+  .addEventListener('click', () => {
+    playGame('scissors');
+  });
+
+document.body.addEventListener('keydown', (event) => {
+  console.log(event.key);
+  if (event.key === 'r') {
+    playGame('rock');
+  } else if (event.key === 'p') {
+    playGame('paper');
+  } else if (event.key === 's') {
+    playGame('scissors');
+  } else if (event.key === 'Backspace') {
+    resetConfirm();
+  }
+});
 
 function playGame(playerMove) {
   const computerMove = pickComputerMove();
