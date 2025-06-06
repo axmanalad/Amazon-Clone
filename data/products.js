@@ -656,5 +656,37 @@ const products = [
       "apparel",
       "mens"
     ]
+  },
+  {
+    id: "id1",
+    image: "images/products/backpack.jpg",
+    name: "Black Backpack with Laptop Compartment",
+    rating: {
+      stars: 4.5,
+      count: 213
+    },
+    priceCents: 1899,
+    keywords: [
+      "backpack",
+      "laptop",
+      "bag",
+      "school"
+    ]
+  },
+  {
+    id: "id2",
+    image: "images/products/umbrella.jpg",
+    name: "Green Compact Travel Umbrella",
+    rating: {
+      stars: 5.0,
+      count: 327
+    },
+    priceCents: 2300,
+    keywords: [
+      "umbrella",
+      "rain",
+      "accessories",
+      "travel"
+    ]
   }
 ];
