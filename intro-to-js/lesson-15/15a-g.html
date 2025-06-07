@@ -1,0 +1,91 @@
+<!--Lesson 15 Exercises: External Libraries, MVC-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>L15: A-G</title>
+    <style>
+      .h3 {
+        margin-top: 2px;
+        margin-bottom: 2px;
+      }
+      .p {
+        margin-top: 0px;
+        margin-bottom: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>
+      Lesson 15-A
+    </h3>
+    <p>
+      Using DayJS, get the date 5 days after today and display it in the format: 'Month Day of Month'
+    </p>
+
+    <h3>
+      Lesson 15-B
+    </h3>
+    <p>
+      Calculate 1 month after today and display in the same format as 15a.
+    </p>
+
+    <h3>
+      Lesson 15-C
+    </h3>
+    <p>
+      DayJS has a .subtract(...) method which subtracts time from a date. Calculate 1 month before today and display in same format as 15a.
+    </p>
+
+    <h3>
+      Lesson 15-D
+    </h3>
+    <p>
+      Get a date from DayJS and display it in this format: 'Day of Week'
+    </p>
+
+    <h3>
+      Lesson 15-E
+    </h3>
+    <p>
+      Create a function isWeekend(date) that takes a DayJS object, and returns whether the date is 'Saturday' or 'Sunday'
+    </p>
+
+    <h3>
+      Lesson 15-F
+    </h3>
+    <p>
+      Move isWeekend() into a separate file and use export default. Import this function in another file and run it.
+    </p>
+
+    <h3>
+      Lesson 15-G
+    </h3>
+    <p>
+      We can also rename a default export export when we import. In 15f, when we "import isWeekend", change the name to something else like "import isSatSun" and use this new name to run the function.
+    </p>
+
+    <script type="module">
+      import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
+      import { isWeekend } from './weekend.js';
+      const today = dayjs();
+      // 15-A
+      const futureDate = today.add(5, 'days');
+      console.log(futureDate.format('MMMM D'));
+      // 15-B
+      const oneMonthLater = today.add(1, 'month');
+      console.log(oneMonthLater.format('MMMM D'));
+      // 15-C
+      const oneMonthBefore = today.subtract(1, 'month');
+      console.log(oneMonthBefore.format('MMMM D'));
+      // 15-D
+      console.log(today.format('dddd'));
+      // 15-E and 15-F
+      console.log(isWeekend(dayjs('2024-06-15'))); // Saturday
+      console.log(isWeekend(dayjs('2024-06-17'))); // Monday
+      // 15-G
+      import { isWeekend as isSatSun } from './weekend.js';
+      console.log(isSatSun(dayjs('2024-06-16'))); // Sunday
+      console.log(isSatSun(dayjs('2024-06-18'))); // Tuesday
+    </script>
+  </body>
+</hmtl>
