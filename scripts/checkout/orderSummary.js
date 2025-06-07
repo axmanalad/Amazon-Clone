@@ -4,16 +4,9 @@ import {formatCurrency} from '../utils/money.js';
 import {validateQuantity} from '../utils/quantity.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js';
-
-hello();
-
-const today = dayjs();
-const deliveryDate = today.add(7, 'days');
-console.log(deliveryDate.format('dddd, MMMM D'));
+import {renderPaymentSummary} from './paymentSummary.js';
 
 export function renderOrderSummary() {
-
-
   let cartSummaryHTML = '';
 
   cart.forEach((cartItem) => {
@@ -157,6 +150,8 @@ export function renderOrderSummary() {
       const container = document.querySelector(`.js-cart-item-container-${productId}`);
       container.remove();
       updateCartQuantity();
+
+      renderPaymentSummary();
     });
   });
 
@@ -170,6 +165,7 @@ export function renderOrderSummary() {
       const {productId, deliveryOptionId} = element.dataset;
       updateDeliveryOption(productId, deliveryOptionId);
       renderOrderSummary();
+      renderPaymentSummary();
     });
   });
 }
