@@ -66,6 +66,36 @@ describe('test suite: renderOrderSummary', () => {
     expect(cart[0].productId).toEqual(productId2);
   })
 
+  it('display the correct product name', () => {
+    const productName1 = document.querySelector(`.js-product-name-${productId1}`);
+    const productName2 = document.querySelector(`.js-product-name-${productId2}`);
+    expect(productName1.innerText).toContain('Black and Gray Athletic Cotton Socks - 6 Pairs');
+    expect(productName2.innerText).toContain('Intermediate Size Basketball');
+  });
+
+  it('displays the correct product price', () => {
+    const productPrice1 = document.querySelector(`.js-product-price-${productId1}`);
+    const productPrice2 = document.querySelector(`.js-product-price-${productId2}`);
+    expect(productPrice1.innerText).toContain('$10.90');
+    expect(productPrice2.innerText).toContain('$20.95');
+  });
+
+  it('updates the delivery option', () => {
+    const input = document.querySelector(`.js-delivery-option-${productId1}-3.delivery-option-input`);
+    input.click();
+    expect(input.checked).toEqual(true);
+    expect(cart.length).toEqual(2);
+    expect(cart[0].productId).toEqual(productId1);
+    expect(cart[0].deliveryOptionId).toEqual('3');
+    
+    expect(
+      document.querySelector('.js-payment-summary-shipping').innerText
+    ).toEqual('$14.98');
+    expect(
+      document.querySelector('.js-payment-summary-total').innerText
+    ).toEqual('$63.50');
+  });
+
   afterEach(() => {
     Object.defineProperty(window, 'localStorage', {
       value: originalLocalStorage,
