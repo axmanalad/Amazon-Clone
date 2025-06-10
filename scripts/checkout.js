@@ -13,22 +13,49 @@ import { loadCart } from '../data/cart.js';
 
 // Promise.all()
 // - lets us run multiple promises at the same time and wait for all of them to finish before running the next code
-Promise.all([
-  loadProductsFetch(), // Returns a promise that resolves when the products are loaded
-  new Promise((resolve) => {
+
+// Async
+// - an even better way to handle asynchronous code
+// - a shortcut for promises
+// - makes a function return a promise
+// Await
+// - lets us wait for a promise to finish before running the next code
+// - can only be used inside an async function
+
+// Async/Await
+async function loadPage() {
+  await loadProductsFetch(); // Wait for the products to be loaded
+
+  await new Promise((resolve) => {
     loadCart(() => {
       resolve();
     });
-  })
+  });
 
-]).then((values) => {
-  console.log(values); // ['value1', undefined]
   renderCheckoutHeader();
   renderOrderSummary();
   renderPaymentSummary();
-});
+}
+loadPage();
+
+// Promise.all() usage
+// Promise.all([
+//   loadProductsFetch(), // Returns a promise that resolves when the products are loaded
+//   new Promise((resolve) => {
+//     loadCart(() => {
+//       resolve();
+//     });
+//   })
+
+// ]).then((values) => {
+//   console.log(values); // ['value1', undefined]
+//   renderCheckoutHeader();
+//   renderOrderSummary();
+//   renderPaymentSummary();
+// });
 
 
+// Promise without using multiple promises
 // new Promise((resolve) => {
 //   loadProducts(() => {
 //     resolve('value1');
@@ -48,6 +75,8 @@ Promise.all([
 //   renderPaymentSummary();
 // });
 
+
+// Callback
 // loadProducts(() => {
 //   loadCart(() => {
 //     renderCheckoutHeader();
