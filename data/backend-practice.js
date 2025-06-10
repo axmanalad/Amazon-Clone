@@ -9,6 +9,10 @@ xhr.addEventListener('load', () => {
 });
 
 // First param = type of request (GET, POST, PUT, DELETE)
+// GET = retrieve data from the server
+// POST = send data to the server
+// PUT = update data on the server
+// DELETE = delete data from the server
 // Second param = URL (uniform resource locator [ex. https://amazon.com]) to send the request to
 xhr.open('GET', 'https://supersimplebackend.dev');
 xhr.send(); // The send() method sends the request to the server.
