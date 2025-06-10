@@ -7,10 +7,10 @@ class Cart {
 
   constructor(localStorageKey) {
     this.#localStorageKey = localStorageKey;
-    this.#loadFromStorage();
+    this.loadFromStorage();
   }
 
-  #loadFromStorage() {
+  loadFromStorage() {
     this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey));
 
     if (!this.cartItems) {
@@ -118,9 +118,9 @@ class Cart {
   }
 }
 
-const cart = new Cart('cart-oop');
+export let cart = new Cart('cart');
 const businessCart = new Cart('cart-business');
 
-console.log(cart);
-console.log(businessCart);
-console.log(businessCart instanceof Cart); // true (instanceof checks if businessCart is an instance of Cart class)
+// console.log(cart);
+// console.log(businessCart);
+// console.log(businessCart instanceof Cart); // true (instanceof checks if businessCart is an instance of Cart class)

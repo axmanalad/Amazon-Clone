@@ -1,11 +1,11 @@
-import {addToCart, cart, loadFromStorage, removeFromCart, updateDeliveryOption} from "../../data/cart.js";
+import {cart} from '../../data/cart-class.js';
 
 let mockSetItem;
 const originalLocalStorage = window.localStorage;
 describe('test suite: addToCart', () => {
   beforeEach(() => {
     // Reset cart before each test
-    cart.length = 0;
+    cart.cartItems.length = 0;
     mockSetItem = jasmine.createSpy('setItem');
   });
 
@@ -25,12 +25,12 @@ describe('test suite: addToCart', () => {
       configurable: true
     });
 
-    loadFromStorage();
-    addToCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
-    expect(cart.length).toEqual(1);
+    cart.loadFromStorage();
+    cart.addToCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
+    expect(cart.cartItems.length).toEqual(1);
     expect(mockSetItem).toHaveBeenCalledTimes(1);
-    expect(cart[0].productId).toEqual('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
-    expect(cart[0].quantity).toEqual(2);
+    expect(cart.cartItems[0].productId).toEqual('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
+    expect(cart.cartItems[0].quantity).toEqual(2);
   });
 
   // Flaky test: test that sometimes passes and sometimes fails
@@ -52,17 +52,17 @@ describe('test suite: addToCart', () => {
       configurable: true
     });
 
-    loadFromStorage();
-    addToCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
-    expect(cart.length).toEqual(1);
+    cart.loadFromStorage();
+    cart.addToCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
+    expect(cart.cartItems.length).toEqual(1);
     expect(mockSetItem).toHaveBeenCalledTimes(1);
-    expect(cart[0].productId).toEqual('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
-    expect(cart[0].quantity).toEqual(1);
+    expect(cart.cartItems[0].productId).toEqual('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
+    expect(cart.cartItems[0].quantity).toEqual(1);
   });
 
   afterEach(() => {
     // Clear the cart after each test
-    cart.length = 0;
+    cart.cartItems.length = 0;
 
     // Restore original localStorage
     Object.defineProperty(window, 'localStorage', {
@@ -90,20 +90,20 @@ describe('test suite: removeFromCart', () => {
       },
       configurable: true
     });
-    loadFromStorage();
+    cart.loadFromStorage();
   });
 
   it('removes a product that is in the cart', () => {
-    removeFromCart(productId1);
-    expect(cart.length).toEqual(0);
+    cart.removeFromCart(productId1);
+    expect(cart.cartItems.length).toEqual(0);
     expect(localStorage.setItem).toHaveBeenCalledTimes(1);
     expect(localStorage.setItem).toHaveBeenCalledWith('cart', JSON.stringify([]));
   });
 
   it('does not remove a product that is not in the cart', () => {
-    removeFromCart('non-existent-product');
-    expect(cart.length).toEqual(1);
-    expect(cart[0].productId).toEqual(productId1);
+    cart.removeFromCart('non-existent-product');
+    expect(cart.cartItems.length).toEqual(1);
+    expect(cart.cartItems[0].productId).toEqual(productId1);
     // Check if the cart looks correct, also check if localStorage.setItem was called and with the correct values
     expect(localStorage.setItem).toHaveBeenCalledTimes(1);
     expect(localStorage.setItem).toHaveBeenCalledWith('cart', JSON.stringify([{
@@ -115,7 +115,7 @@ describe('test suite: removeFromCart', () => {
 
   afterEach(() => {
     // Clear the cart after each test
-    cart.length = 0;
+    cart.cartItems.length = 0;
 
     // Restore original localStorage
     Object.defineProperty(window, 'localStorage', {
@@ -143,15 +143,15 @@ describe('test suite: updateDeliveryOption', () => {
       },
       configurable: true
     });
-    loadFromStorage();
+    cart.loadFromStorage();
   });
 
   it('updates the delivery option', () => {
-    updateDeliveryOption(productId1, '3');
-    expect(cart.length).toEqual(1);
-    expect(cart[0].productId).toEqual(productId1);
-    expect(cart[0].deliveryOptionId).toEqual('3');
-    expect(cart[0].quantity).toEqual(1);
+    cart.updateDeliveryOption(productId1, '3');
+    expect(cart.cartItems.length).toEqual(1);
+    expect(cart.cartItems[0].productId).toEqual(productId1);
+    expect(cart.cartItems[0].deliveryOptionId).toEqual('3');
+    expect(cart.cartItems[0].quantity).toEqual(1);
     expect(localStorage.setItem).toHaveBeenCalledTimes(1);
     expect(localStorage.setItem).toHaveBeenCalledWith('cart', JSON.stringify([{
       productId: productId1,
@@ -161,20 +161,20 @@ describe('test suite: updateDeliveryOption', () => {
   });
 
   it('does not update delivery option for a product not in the cart', () => {
-    updateDeliveryOption('non-existent-product', '3');
-    expect(cart.length).toEqual(1);
-    expect(cart[0].productId).toEqual(productId1);
-    expect(cart[0].deliveryOptionId).toEqual('1');
-    expect(cart[0].quantity).toEqual(1);
+    cart.updateDeliveryOption('non-existent-product', '3');
+    expect(cart.cartItems.length).toEqual(1);
+    expect(cart.cartItems[0].productId).toEqual(productId1);
+    expect(cart.cartItems[0].deliveryOptionId).toEqual('1');
+    expect(cart.cartItems[0].quantity).toEqual(1);
     expect(localStorage.setItem).toHaveBeenCalledTimes(0);
   });
 
   it('does not update delivery option with an invalid delivery option ID', () => {
-    updateDeliveryOption(productId1, 'invalid-option');
-    expect(cart.length).toEqual(1);
-    expect(cart[0].productId).toEqual(productId1);
-    expect(cart[0].deliveryOptionId).toEqual('1');
-    expect(cart[0].quantity).toEqual(1);
+    cart.updateDeliveryOption(productId1, 'invalid-option');
+    expect(cart.cartItems.length).toEqual(1);
+    expect(cart.cartItems[0].productId).toEqual(productId1);
+    expect(cart.cartItems[0].deliveryOptionId).toEqual('1');
+    expect(cart.cartItems[0].quantity).toEqual(1);
     expect(localStorage.setItem).toHaveBeenCalledTimes(0);
   });
 });
