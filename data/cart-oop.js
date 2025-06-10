@@ -87,7 +87,7 @@ function Cart(localStorageKey) {
     showAddedToCart(productId) {
       let addedToCart = document.querySelector(`.js-added-to-cart-${productId}`);
       addedToCart.classList.add('added-to-cart-visible');
-      clearTimeout(addedToCartTimeoutId);
+      clearTimeout(this.addedToCartTimeoutId);
       this.addedToCartTimeoutId = setTimeout(function() {
         addedToCart.classList.remove('added-to-cart-visible');
       }, 2000);
