@@ -24,13 +24,22 @@ import { loadCart } from '../data/cart.js';
 
 // Async/Await
 async function loadPage() {
-  await loadProductsFetch(); // Wait for the products to be loaded
+  try {
+    // throw 'error1'; // Simulate an error
 
-  await new Promise((resolve) => {
-    loadCart(() => {
-      resolve();
+    await loadProductsFetch(); // Wait for the products to be loaded
+
+    const value = await new Promise((resolve, reject) => {
+      // throw 'error2'; // Simulate an error
+      loadCart(() => {
+        // reject('error3');
+        resolve();
+      });
     });
-  });
+
+  } catch (error) {
+    console.log('Unexpected error. Please try again later.');
+  }
 
   renderCheckoutHeader();
   renderOrderSummary();
