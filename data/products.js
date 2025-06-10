@@ -60,6 +60,33 @@ class Clothing extends Product {
   }
 }
 
+// Built-in Class
+// const date = new Date();
+// console.log(date);
+// console.log(date.toLocaleTimeString());
+
+// More info about the `this` keyword:
+// console.log(this); // undefined in strict mode, window in non-strict mode
+
+// const object2 = {
+//   a: 2,
+//   b: this.a, // undefined
+// };
+
+// Regular function vs arrow function for `this` binding
+// function logThis() {
+//   console.log(this); // undefined
+// }
+// logThis();
+// logThis.call('hello'); // 'hello' (replaces `this`)
+
+// const object3 = {
+//   method: () => {
+//     console.log(this); // undefined (arrow functions do not have their own `this`)
+//   }
+// };
+// object3.method(); // undefined
+
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
