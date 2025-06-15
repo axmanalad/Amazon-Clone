@@ -1,0 +1,178 @@
+<!--Lesson 18 Exercises: Backend, Promises, Async Await-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>L18: A-G</title>
+    <style>
+      .h3 {
+        margin-top: 2px;
+        margin-bottom: 2px;
+      }
+      .p {
+        margin-top: 0px;
+        margin-bottom: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      Note: Use the backend URL: <code>https://supersimplebackend.dev</code>
+    </p>
+    <h3>
+      Lesson 18-A
+    </h3>
+    <p>
+      Using XMLHttpRequest, make a GET request to /greeting and display the response in the console.
+    </p>
+    <script>
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "https://supersimplebackend.dev/greeting");
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          console.log(xhr.responseText);
+        } else {
+          console.error("Error: " + xhr.status);
+        }
+      };
+      xhr.onerror = function() {
+        console.error("Request failed");
+      };
+      xhr.send();
+    </script>
+
+    <h3>
+      Lesson 18-B
+    </h3>
+    <p>
+      Using fetch(), make the same request GET /greeting and display the response in the console. Use response.text() to get the text.
+    </p>
+    <script>
+      fetch("https://supersimplebackend.dev/greeting")
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok " + response.statusText);
+          }
+          return response.text();
+        })
+        .then(data => console.log(data))
+        .catch(error => console.error("Fetch error: ", error));
+    </script>
+
+    <h3>
+      Lesson 18-C
+    </h3>
+    <p>
+      Make the same request GET /greeting as 18b, but using fetch() and async await.
+    </p>
+    <script>
+      async function fetchGreeting() {
+        try {
+          const response = await fetch("https://supersimplebackend.dev/greeting");
+          if (!response.ok) {
+            throw new Error("Network response was not ok " + response.statusText);
+          }
+          const data = await response.text();
+          console.log(data);
+        } catch (error) {
+          console.error("Fetch error: ", error);
+        }
+      }
+      fetchGreeting();
+    </script>
+
+    <h3>
+      Lesson 18-D
+    </h3>
+    <p>
+      Using fetch() and async await, create a POST request to /greeting. In your own request, send the JSON {name: "your_name"} Display the response in the console.
+    </p>
+    <script>
+      async function postGreeting() {
+        try {
+          const response = await fetch("https://supersimplebackend.dev/greeting", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ name: "Alexander" })
+          });
+          if (!response.ok) {
+            throw new Error("Network response was not ok " + response.statusText);
+          }
+          const data = await response.text();
+          console.log(data);
+        } catch (error) {
+          console.error("Fetch error: ", error);
+        }
+      }
+      postGreeting();
+    </script>
+    <p>
+      Notice that even though GET /greeting and POST /greeting use the same URL path /greeting, they do different things. GET /greeting returns a greeting, while POST /greeting returns a different greeting. This is because the server is set up to handle different HTTP methods (GET and POST) differently.
+    </p>
+
+    <h3>
+      Lesson 18-E
+    </h3>
+    <p>
+      Try making a GET request to https://amazon.com. You'll get an error knonw as CORS (Cross-Origin Resource Sharing) error. This means that the URL your code is running on (your local machine) is different than https://amazon.com, so Amazon's backend blocked your request for security reasons. Your code is correct, but Amazon needs to change some settings in their backend to allow your rquests.
+    </p>
+
+    <h3>
+      Lesson 18-F
+    </h3>
+    <p>
+      Add error handling to 18e. When there's an error, display 'CORS error. Your request was blocked by the backend.' in the console.
+    </p>
+    <script>
+      async function fetchAmazon() {
+        try {
+          const response = await fetch("https://amazon.com");
+          if (!response.ok) {
+            throw new Error("Network response was not ok " + response.statusText);
+          }
+          const data = await response.text();
+          console.log(data);
+        } catch (error) {
+          console.error("CORS error. Your request was blocked by the backend.");
+        }
+      }
+      fetchAmazon();
+    </script>
+
+    <h3>
+      Lesson 18-G
+    </h3>
+    <p>
+      Make a request POST /greeting to https://supersimplebackend.dev, but don't send any data (don't send a body). The backend will give back a 400 error (invalid request). fetch() does not throw an error for 400 errors (only network errors) so we'll manually create an error:<br>
+      - Check if(response.status >= 400) and manually create an error using throw response;<br>
+      - Add error handling to catch this manual error. When the error is caught, check if (error.status === 400) and display the JSON attached to the response in the console: await error.json().<br>
+      - Otherwise, display 'Network error. Please try again later.'
+    </p>
+    <script>
+      async function postGreetingNoBody() {
+        try {
+          const response = await fetch("https://supersimplebackend.dev/greeting", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            }
+          });
+          if (response.status >= 400) {
+            throw response;
+          }
+          const data = await response.text();
+          console.log(data);
+        } catch (error) {
+          if (error.status === 400) {
+            const errorData = await error.json();
+            console.log(errorData);
+          } else {
+            console.error("Network error. Please try again later.");
+          }
+        }
+      }
+      postGreetingNoBody();
+    </script>
+  </body>
+</hmtl>
